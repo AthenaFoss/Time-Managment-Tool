@@ -1,4 +1,4 @@
-# Time Management Tool 🚀
+# Time Management Tool 
 
 
 ## Project Origin
