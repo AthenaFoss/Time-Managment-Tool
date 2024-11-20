@@ -1,21 +1,42 @@
 # Time Management Tool 🚀
 
+
 ## Project Origin
 
-This project was inspired by a personal journey shared in [this tweet](https://x.com/NikhilEth/status/1846957571761983971) about creating a time management solution based on productivity techniques.
+This project was inspired by a personal journey shared in the tweet: [View Original Tweet](https://x.com/NikhilEth/status/1846957571761983971)
+
+The idea emerged from a desire to create a comprehensive time management tool that goes beyond traditional tracking methods, focusing on productivity and personal growth.
+
+![Time Management App Preview](https://pbs.twimg.com/media/GaG2H34WcAAgcee?format=jpg&name=large)
 
 ## Overview
 
 A comprehensive web application designed to help you manage time, prioritize tasks, and boost productivity. Built with modern web technologies and inspired by advanced time management techniques.
 
-## Features
 
-- Task prioritization (Urgent, Important, Time-taken)
-- Custom Pomodoro Timer 🍅
-- To-do lists
-- Performance analytics
-- Google Account Login
-- Cross-device synchronization
+## Key Features
+
+### Productivity Arsenal 💪🎯
+- 🔥 Smart Task Prioritization (Urgent, Important, Time-taken)
+- 🍅 Customizable Pomodoro Timer
+- 📋 Intelligent To-do Lists
+- 📊 Performance Analytics Dashboard
+
+### PWA Superpowers 🌐📱
+- 🚫 Offline Mode Support
+- 💻 Desktop & Mobile Installation
+- 🔔 Smart Push Notifications
+- 🔄 Background Synchronization
+- 🏠 Home Screen Shortcut
+
+## Tech Stack
+
+- Frontend: Next.js
+- Backend: Node.js
+- Database: PostgreSQL
+- ORM: Prisma
+- Authentication: Google OAuth
+- Deployment: TBD
 
 ## Prerequisites
 
@@ -24,7 +45,7 @@ A comprehensive web application designed to help you manage time, prioritize tas
 - Docker (optional, for local database)
 - PostgreSQL
 
-## Setup Instructions
+## Environment Setup
 
 ### 1. Clone the Repository
 
@@ -72,13 +93,33 @@ Configure your `DATABASE_URL` with your cloud provider's PostgreSQL connection s
 npm run db:generate
 ```
 
-### 6. Start the Application
+### 6. Run Database Migrations
+
+```bash
+npm run db:migrate
+```
+
+### 7. Start the Application
 
 ```bash
 npm run dev
 ```
 
 Access the application at: `http://localhost:3000`
+
+## Troubleshooting
+
+- Ensure all environment variables are correctly set
+- Check PostgreSQL connection
+- Verify Node.js and npm versions
+- Run `npm audit` to check for dependency vulnerabilities
+
+## Security Considerations
+
+- Keep dependencies updated
+- Use environment-specific configurations
+- Implement proper authentication and authorization
+- Use HTTPS for all production deployments
 
 ## Contributing
 
@@ -88,10 +129,38 @@ Access the application at: `http://localhost:3000`
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+### Contribution Guidelines
+
+- Follow existing code style
+- Write tests for new features
+- Update documentation
+- Ensure CI/CD checks pass
+
+## Testing
+
+```bash
+npm run test
+```
+
+## Build for Production
+
+```bash
+npm run build
+```
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
+## Acknowledgements
+
+- Inspired by Nikhil PN's personal productivity journey
+- Time management techniques from productivity experts
+
 ## Contact
 
 Project Link: [https://github.com/AthenaFoss/time_managment_tool](https://github.com/AthenaFoss/time_managment_tool)
+
+## Support
+
+If you encounter any issues or have questions, please [open an issue](https://github.com/AthenaFoss/time_managment_tool/issues) on GitHub.
