@@ -1,5 +1,9 @@
 # Time Management Tool 🚀
 
+## Project Origin
+
+This project was inspired by a personal journey shared in [this tweet](https://x.com/NikhilEth/status/1846957571761983971) about creating a time management solution based on productivity techniques.
+
 ## Overview
 
 A comprehensive web application designed to help you manage time, prioritize tasks, and boost productivity. Built with modern web technologies and inspired by advanced time management techniques.
