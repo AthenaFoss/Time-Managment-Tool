@@ -1,8 +1,8 @@
-import { RegisterForm } from "@/app/components/RegisterForm";
+import { RegisterForm } from "@/components/auth/RegisterForm"
 
 export default function Register() {
   return (
-    <div className="container flex justify-center items-center flex-col min-h-[90vh] mx-auto p-4 max-w-4xl">
+    <div className="flex justify-center items-center h-screen w-[90%]">
       <RegisterForm />
     </div>
   )
