@@ -28,6 +28,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next.config.js"
-  ],
+, "public/sw.js"  ],
   "exclude": ["node_modules"]
 }
