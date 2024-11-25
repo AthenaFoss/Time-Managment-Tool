@@ -1,6 +1,14 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { z } from "zod"
+import Link from "next/link"
+import { useState } from "react"
+import { signIn } from "next-auth/react"
+import { FcGoogle } from "react-icons/fc"
+import { useForm } from "react-hook-form"
+import { Loader2, Eye, EyeOff } from "lucide-react"
+import { zodResolver } from "@hookform/resolvers/zod"
+
 import {
   Card,
   CardContent,
@@ -9,12 +17,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import Link from "next/link"
-import { FcGoogle } from "react-icons/fc"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod"
-import { LoginSchema } from "../../schemas"
 import {
   Form,
   FormControl,
@@ -23,17 +25,18 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { login } from "../../actions/login"
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
-import { signIn } from "next-auth/react"
-import { useState } from "react"
+import { login } from "@/actions/login"
+import { LoginSchema } from "@/lib/schemas"
 import { useToast } from "@/hooks/use-toast"
-import { Loader2 } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 
 export function LoginForm() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -46,7 +49,6 @@ export function LoginForm() {
     setIsSubmitting(true)
     login(data)
       .then((response) => {
-        console.log(response)
         //* NOTE: TEMP solution: the credentials sign in is not returning **success** in response
         if (response?.error) {
           toast({
@@ -55,10 +57,10 @@ export function LoginForm() {
             variant: "destructive",
           })
         } else
-        toast({
-          title: "Login successful!",
-          description: "You have successfully logged in.",
-        })
+          toast({
+            title: "Login successful!",
+            description: "You have successfully logged in.",
+          })
       })
       .catch(() => {
         toast({
@@ -77,6 +79,10 @@ export function LoginForm() {
     signIn("google", {
       callbackUrl: DEFAULT_LOGIN_REDIRECT,
     })
+  }
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword)
   }
 
   return (
@@ -116,12 +122,31 @@ export function LoginForm() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input
-                        {...field}
-                        type="password"
-                        placeholder="********"
-                        disabled={isSubmitting}
-                      />
+                      <div className="relative">
+                        <Input
+                          {...field}
+                          placeholder="********"
+                          disabled={isSubmitting}
+                          type={showPassword ? "text" : "password"}
+                        />
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent hover:text-black text-black/50"
+                          onClick={togglePasswordVisibility}
+                          disabled={isSubmitting}
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-4 w-4" />
+                          ) : (
+                            <Eye className="h-4 w-4" />
+                          )}
+                          <span className="sr-only">
+                            {showPassword ? "Hide password" : "Show password"}
+                          </span>
+                        </Button>
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

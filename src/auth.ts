@@ -1,9 +1,9 @@
-import NextAuth from "next-auth"
 import {} from "next-auth/jwt"
-import { Adapter } from "next-auth/adapters"
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import authConfig from "./auth.config"
+import NextAuth from "next-auth"
+
+import authConfig from "@/auth.config"
 import prisma from "@/lib/clients/prisma"
+import { PrismaAdapter } from "@auth/prisma-adapter"
 
 declare module "next-auth/jwt" {
   interface JWT {
@@ -24,7 +24,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: "/login",
     error: "/error",
-  },  
+  },
   events: {
     async linkAccount({ user }) {
       await prisma.user.update({
@@ -37,7 +37,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   callbacks: {
     async signIn({ user, account }) {
-      if(account?.provider !== 'credentials') return true;
+      if (account?.provider !== "credentials") return true
 
       const existingUser = await prisma.user.findUnique({
         where: {
@@ -74,7 +74,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token
     },
   },
-  adapter: PrismaAdapter(prisma) as Adapter,
+  adapter: PrismaAdapter(prisma),
   session: { strategy: "jwt" },
   ...authConfig,
 })

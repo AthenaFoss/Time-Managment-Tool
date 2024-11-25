@@ -11,7 +11,7 @@
     "db:migrate": "prisma migrate dev",
     "studio": "prisma studio",
     "ui:add": "npx shadcn@latest add",
-    "prettier": "npx prettier --write '**/*.{js,jsx,ts,tsx}'"
+    "prettier": "npx prettier --write '**/*.{js,jsx,ts,tsx,mjs}'"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.7.4",

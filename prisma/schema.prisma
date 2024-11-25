@@ -4,8 +4,7 @@ datasource db {
 }
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
+  provider = "prisma-client-js"
 }
 
 model User {
@@ -18,6 +17,7 @@ model User {
   verificationToken        String?   @unique
   verificationTokenExpires DateTime?
   accounts                 Account[]
+  tasks                    Task[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -45,4 +45,21 @@ model Account {
 
   @@id([provider, providerAccountId])
   @@map("accounts")
+}
+
+model Task {
+  id            Int     @id @default(autoincrement())
+  userId        String
+  activity      String
+  priority      Int
+  urgent        Boolean @default(false)
+  important     Boolean @default(false)
+  timeUnder5Min Boolean @default(false)
+
+  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("tasks")
 }

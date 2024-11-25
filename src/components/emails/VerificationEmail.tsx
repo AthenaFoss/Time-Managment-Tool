@@ -15,6 +15,15 @@ interface VerificationEmailProps {
   link: string
 }
 
+const button = {
+  backgroundColor: "#3949AB",
+  borderRadius: 5,
+  color: "#FFF",
+  fontWeight: "bold",
+  cursor: "pointer",
+  padding: "12px 30px",
+}
+
 export default function VerificationEmail({
   name,
   link,
@@ -42,29 +51,19 @@ export default function VerificationEmail({
             Thank you for registering on <b>Time Management App</b>. To make
             sure this is your email address, we need to verify it.
           </Text>
-          <Button
-            style={button}
-            href={link}
-          >
+          <Button style={button} href={link}>
             Verify here
           </Button>
         </Section>
-        <Text style={{
-          fontSize: "10px",
-          color: "gray",
-        }}>
+        <Text
+          style={{
+            fontSize: "10px",
+            color: "gray",
+          }}
+        >
           This link will expire after 1 hour.
         </Text>
       </Container>
     </Html>
   )
 }
-
-const button = {
-  backgroundColor: "#3949AB",
-  borderRadius: 5,
-  color: "#FFF",
-  fontWeight: "bold",
-  cursor: "pointer",
-  padding: "12px 30px",
-};

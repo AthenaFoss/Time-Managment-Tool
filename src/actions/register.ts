@@ -1,9 +1,10 @@
 "use server"
 
-import bcrypt from "bcryptjs"
-import { RegisterSchema } from "@/schemas/index"
 import * as z from "zod"
+import { hash } from "bcryptjs"
+
 import prisma from "@/lib/clients/prisma"
+import { RegisterSchema } from "@/lib/schemas"
 import { generateVerificationToken } from "@/lib/utils/token"
 import { sendVerificationEmail } from "@/lib/utils/sendVerificationEmail"
 
@@ -15,7 +16,6 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
   }
 
   const { email, password, name } = validatedFields.data
-  const hashedPassword = await bcrypt.hash(password, 10)
 
   const existingUser = await prisma.user.findUnique({
     where: {
@@ -26,6 +26,8 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
   if (existingUser) {
     return { error: "Email already in use!" }
   }
+
+  const hashedPassword = await hash(password, 10)
 
   const { expires, token } = generateVerificationToken()
 
@@ -45,7 +47,6 @@ export const register = async (data: z.infer<typeof RegisterSchema>) => {
   }
 
   return {
-    success:
-      `User registered successfully! Verification email sent to ${email}`,
+    success: `User registered successfully! Verification email sent to ${email}`,
   }
 }
