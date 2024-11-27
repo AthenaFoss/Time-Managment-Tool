@@ -25,8 +25,6 @@ const nextConfig = {
             }
         ]
     },
-    //*NOTE: added this to have seemless experience with authentication flow
-    reactStrictMode: false,
 }
 
 export default nextConfig

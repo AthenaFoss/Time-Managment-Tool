@@ -2,12 +2,13 @@ import type { Metadata } from "next"
 
 import "@/app/globals.css"
 import { poppins } from "@/lib/utils/fonts"
-import "./globals.css"
-import { NavBar } from "./components/Navbar"
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: "Task Management Tool",
+  title: {
+    template: "%s | Time Management Tool",
+    default: "Time Management Tool",
+  },
   description: "Managing the time and prioritizing the task",
   manifest: "/manifest.json",
   themeColor: "#000000",
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: "Task Management Tool",
-  },
+  }
 }
 
 export default function RootLayout({
@@ -31,7 +32,6 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
       </head>
       <body className={`${poppins.className} antialiased`}>
-        <NavBar />
         {children}
         <Toaster />
       </body>

@@ -1,7 +1,8 @@
-import { LogOut, Settings } from "lucide-react"
-import { User } from "next-auth"
-import Image from "next/image"
 import Link from "next/link"
+import Image from "next/image"
+import { User } from "next-auth"
+import { LogOut, Settings } from "lucide-react"
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,8 +12,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
 import { signOut } from "@/auth"
+import { Button } from "@/components/ui/button"
 
 interface UserButtonProps {
   user: User
@@ -47,7 +48,7 @@ export function UserButton({ user }: UserButtonProps) {
         <DropdownMenuItem asChild>
           <form
             action={async () => {
-              "use server";
+              "use server"
               await signOut({
                 redirectTo: "/login",
               })

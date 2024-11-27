@@ -1,15 +1,5 @@
 "use client"
 
-import { verifyToken } from "@/actions/verifyToken"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
 import {
   AlertCircle,
   ArrowRight,
@@ -20,6 +10,17 @@ import {
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { verifyToken } from "@/actions/verifyToken"
 
 export default function Verify() {
   const [error, setError] = useState<string | undefined>()
@@ -48,7 +49,7 @@ export default function Verify() {
   }, [onSubmit])
 
   return (
-    <div className="flex items-center justify-center min-h-[90vh]">
+    <div className="flex justify-center items-center h-screen w-[90%]">
       <Card className="w-full max-w-md">
         <CardHeader>
           <div className="flex items-center gap-2">

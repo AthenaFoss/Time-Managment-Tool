@@ -1,5 +1,6 @@
 import { Resend } from "resend"
-import VerificationEmail from "../../../emails/VerificationEmail"
+
+import VerificationEmail from "@/components/emails/VerificationEmail"
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 

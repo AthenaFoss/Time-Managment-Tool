@@ -1,11 +1,12 @@
 "use server"
 
 import * as z from "zod"
-import { LoginSchema } from "@/schemas/index"
-import { signIn } from "@/auth"
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 import { AuthError } from "next-auth"
+
+import { signIn } from "@/auth"
 import prisma from "@/lib/clients/prisma"
+import { LoginSchema } from "@/lib/schemas"
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 import { generateVerificationToken } from "@/lib/utils/token"
 import { sendVerificationEmail } from "@/lib/utils/sendVerificationEmail"
 
