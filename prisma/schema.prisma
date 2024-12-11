@@ -51,9 +51,8 @@ model Task {
   id            Int     @id @default(autoincrement())
   userId        String
   activity      String
-  priority      Int
-  urgent        Boolean @default(false)
-  important     Boolean @default(false)
+  priority      String
+  completed     Boolean @default(false)
   timeUnder5Min Boolean @default(false)
 
   User User @relation(fields: [userId], references: [id], onDelete: Cascade)

@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import "@/app/globals.css"
 import { poppins } from "@/lib/utils/fonts"
 import { Toaster } from "@/components/ui/toaster"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   title: {
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: "Task Management Tool",
-  }
+  },
 }
 
 export default function RootLayout({
@@ -32,8 +33,15 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
       </head>
       <body className={`${poppins.className} antialiased`}>
-        {children}
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   )

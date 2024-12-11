@@ -25,7 +25,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { login } from "@/actions/login"
+import { login } from "@/actions/auth/login"
 import { LoginSchema } from "@/lib/schemas"
 import { useToast } from "@/hooks/use-toast"
 import { Input } from "@/components/ui/input"

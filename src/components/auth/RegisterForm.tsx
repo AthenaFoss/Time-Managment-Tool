@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/form"
 import { useToast } from "@/hooks/use-toast"
 import { Input } from "@/components/ui/input"
-import { register } from "@/actions/register"
+import { register } from "@/actions/auth/register"
 import { RegisterSchema } from "@/lib/schemas"
 import { Button } from "@/components/ui/button"
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes"

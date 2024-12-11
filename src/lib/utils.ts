@@ -6,6 +6,8 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const DEFAULT_TIME = 1500
+
 export const TIMER_PRESETS: TimerPreset[] = [
   {
     value: 1500,

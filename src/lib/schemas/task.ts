@@ -9,19 +9,9 @@ export const TaskSchema = z.object({
     .max(255, {
       message: "Activity must be less than 255 characters",
     }),
-  priority: z
-    .number()
-    .min(1, {
-      message: "Priority is required",
-    })
-    .min(1, {
-      message: "Priority must be at least 1",
-    })
-    .max(10, {
-      message: "Priority must be at most 10",
-    }),
-  urgent: z.boolean(),
-  important: z.boolean(),
+  priority: z.enum(["urgent", "important", "normal"], {
+    required_error: "Please select a priority level",
+  }),
   timeUnder5Min: z.boolean(),
 })
 

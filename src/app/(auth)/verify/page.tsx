@@ -20,7 +20,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { verifyToken } from "@/actions/verifyToken"
+import { verifyToken } from "@/actions/auth/verifyToken"
 
 export default function Verify() {
   const [error, setError] = useState<string | undefined>()
