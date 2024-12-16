@@ -9,8 +9,8 @@ export async function NavBar() {
   const user = session?.user
 
   return (
-    <header className="sticky top-0 bg-background px-3 shadow-sm w-full">
-      <nav className="mx-auto flex h-14 w-full max-w-7xl items-center justify-between gap-3">
+    <header className="sticky top-0 bg-background shadow-sm w-full xl:w-[80vw] px-4 md:px-8">
+      <nav className="flex h-14 w-full items-center justify-between gap-3">
         <div>
           <Link href="/" className="font-bold">
             Time Management App

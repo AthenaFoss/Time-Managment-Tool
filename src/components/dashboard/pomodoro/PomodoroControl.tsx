@@ -83,7 +83,7 @@ function PomodoroControl() {
   }
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-2xl mx-auto">
       <CardContent className="pt-6 space-y-4">
         <Tabs defaultValue="Pomodoro">
           <TabsList className="w-full">
