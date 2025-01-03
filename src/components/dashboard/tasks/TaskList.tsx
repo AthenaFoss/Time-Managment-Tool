@@ -6,6 +6,7 @@ import { useTasks } from "@/context/TaskContext"
 import { Checkbox } from "@/components/ui/checkbox"
 import { useState } from "react"
 import { updateTaskStatus } from "@/actions/tasks/updateTask"
+import { TaskOptions } from "./TaskOptions"
 
 export function TaskList() {
   const { tasks, fetchTasks } = useTasks()
@@ -65,6 +66,7 @@ export function TaskList() {
                   >
                     {task.priority}
                   </Badge>
+                  <TaskOptions taskId={task.id} />
                 </div>
               </div>
             ))}
