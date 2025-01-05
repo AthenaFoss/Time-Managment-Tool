@@ -66,7 +66,7 @@ export function TaskList() {
                   >
                     {task.priority}
                   </Badge>
-                  <TaskOptions taskId={task.id} />
+                  <TaskOptions task={task} />
                 </div>
               </div>
             ))}

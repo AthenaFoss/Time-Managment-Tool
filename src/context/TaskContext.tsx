@@ -1,21 +1,11 @@
 "use client"
 import { getAllTasks } from "@/actions/tasks/getAllTasks"
+import { TaskProps } from "@/lib/types"
 import React, { createContext, useContext, useState, useEffect } from "react"
 
-interface Task {
-  id: number
-  userId: string
-  activity: string
-  priority: string
-  completed: boolean
-  timeUnder5Min: boolean
-  createdAt: Date
-  updatedAt: Date
-}
-
 interface TaskContextType {
-  tasks: Task[]
-  setTasks: React.Dispatch<React.SetStateAction<Task[]>>
+  tasks: TaskProps[]
+  setTasks: React.Dispatch<React.SetStateAction<TaskProps[]>>
   fetchTasks: () => Promise<void>
 }
 
@@ -26,7 +16,7 @@ interface TaskProviderProps {
 }
 
 export const TaskProvider: React.FC<TaskProviderProps> = ({ children }) => {
-  const [tasks, setTasks] = useState<Task[]>([])
+  const [tasks, setTasks] = useState<TaskProps[]>([])
 
   const fetchTasks = async () => {
     const response = await getAllTasks()
