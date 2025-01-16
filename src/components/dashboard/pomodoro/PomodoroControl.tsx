@@ -55,6 +55,7 @@ function PomodoroControl() {
 
   // select between pomodoro | short break | long break
   const selectTimer = (value: number, display: TimerMessageKey) => {
+    console.log(value, display)
     setIsTimerRunning(false)
     setTime(value)
     setActiveButton(display)
@@ -75,9 +76,13 @@ function PomodoroControl() {
   }
 
   const handleTimerReset = () => {
+    console.log(isActiveButton)
     setIsTimerRunning(false)
-    setTime(TIMER_PRESETS[0].value)
-    setActiveButton(TIMER_PRESETS[0].display)
+    const selectedTimer = TIMER_PRESETS.find(
+      (preset) => preset.display === isActiveButton
+    )
+    setTime(selectedTimer?.value || DEFAULT_TIME)
+    setActiveButton(isActiveButton)
     // change to app name
     document.title = "Time Management Tool"
   }
@@ -98,8 +103,8 @@ function PomodoroControl() {
               </TabsTrigger>
             ))}
           </TabsList>
-          {TIMER_PRESETS.map(({ value, display }) => (
-            <TabsContent className="mt-4 justify-items-center" key={value} value={display}>
+          {TIMER_PRESETS.map(({value, display }) => (
+            <TabsContent className="mt-4 justify-items-center"  key={value} value={display}>
               <PomodoroClock currentTime={time} />
             </TabsContent>
           ))}

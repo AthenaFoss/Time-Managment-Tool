@@ -9,7 +9,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
-import { useCallback, useEffect, useState } from "react"
+import { Suspense, useCallback, useEffect, useState } from "react"
 
 import {
   Card,
@@ -22,7 +22,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { verifyToken } from "@/actions/auth/verifyToken"
 
-export default function Verify() {
+function VerifyComponent() {
   const [error, setError] = useState<string | undefined>()
   const [success, setSuccess] = useState<string | undefined>()
 
@@ -91,9 +91,8 @@ export default function Verify() {
           </div>
         </CardContent>
         <CardFooter className="flex justify-between items-center">
-          {/* //* NOTE: update when we have support email*/}
           <p className="text-sm text-muted-foreground">
-            Need help? {""}
+            Need help?{" "}
             <Link href="" className="text-primary hover:underline">
               Contact support
             </Link>
@@ -107,5 +106,13 @@ export default function Verify() {
         </CardFooter>
       </Card>
     </div>
+  )
+}
+
+export default function Verify() {
+  return (
+    <Suspense fallback={<Loader2 className="animate-spin" />}>
+      <VerifyComponent />
+    </Suspense>
   )
 }
