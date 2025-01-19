@@ -76,8 +76,8 @@ function PomodoroControl() {
 
   const handleTimerReset = () => {
     setIsTimerRunning(false)
-    setTime(TIMER_PRESETS[0].value)
-    setActiveButton(TIMER_PRESETS[0].display)
+    setTime(TIMER_PRESETS.find(preset => preset.display === isActiveButton)?.value || DEFAULT_TIME);
+    setActiveButton(isActiveButton)
     // change to app name
     document.title = "Time Management Tool"
   }
