@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button"
 export default function Home() {
   return (
     <main className="flex flex-col h-screen mx-auto">
-      <NavBar />
+      <div className="flex justify-center">
+        <NavBar />
+      </div>
       <section className="flex flex-col items-center justify-center h-screen">
         <h1 className="text-2xl md:text-3xl font-bold mb-8">
           Time Management App
