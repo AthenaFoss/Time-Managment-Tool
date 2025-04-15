@@ -10,6 +10,8 @@ import { TaskOptions } from "./TaskOptions"
 
 export function TaskList() {
   const { tasks, fetchTasks } = useTasks()
+
+  console.log(tasks, "tasks")
   const [isUpdating, setIsUpdating] = useState(false)
 
   const handleCheckboxChange = async (taskId: number, completed: boolean) => {
@@ -52,7 +54,7 @@ export function TaskList() {
                 <div className="flex gap-2">
                   {task.timeUnder5Min && (
                     <Badge className="bg-green-500 hover:bg-green-600">
-                      quick
+                      JUST DO IT NOW
                     </Badge>
                   )}
                   <Badge

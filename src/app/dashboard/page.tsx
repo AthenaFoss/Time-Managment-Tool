@@ -8,11 +8,11 @@ export default function Dashboard() {
   return (
     <div className="flex-1 space-y-4 p-4 md:p-8 w-full xl:w-[80vw]">
       <TaskProvider>
-        <SummaryCard />
+        <CreateTaskForm />
+        {/* <SummaryCard /> */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <TaskList />
-          <CreateTaskForm />
-          <PomodoroControl />
+          {/* <PomodoroControl /> */}
         </div>
       </TaskProvider>
     </div>
