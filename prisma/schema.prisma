@@ -1,10 +1,10 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model User {
@@ -16,11 +16,10 @@ model User {
   password                 String?
   verificationToken        String?   @unique
   verificationTokenExpires DateTime?
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
   accounts                 Account[]
   tasks                    Task[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 
   @@map("users")
 }
@@ -37,28 +36,25 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
   @@map("accounts")
 }
 
 model Task {
-  id            Int     @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   userId        String
   activity      String
-  priority      String
-  completed     Boolean @default(false)
-  timeUnder5Min Boolean @default(false)
-
-  User User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  priority      Int
+  urgent        Boolean  @default(false)
+  important     Boolean  @default(false)
+  timeUnder5Min Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  User          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("tasks")
 }
