@@ -97,9 +97,16 @@ export default function CommonTaskForm({
     <div className="w-full">
       {/* Progress indicator */}
       <div className="w-full mb-6">
-        <div className="w-full bg-gray-200 rounded-full h-3">
+        <div className="flex justify-between mb-2">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="text-sm font-medium">
+              Step {i}
+            </div>
+          ))}
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-2.5">
           <div
-            className="bg-primary h-3 rounded-full transition-all duration-300 ease-in-out"
+            className="bg-primary h-2.5 rounded-full transition-all duration-300 ease-in-out"
             style={{ width: `${(step / 4) * 100}%` }}
           ></div>
         </div>
@@ -142,32 +149,30 @@ export default function CommonTaskForm({
               <Button
                 variant={formData.isUrgent ? "default" : "outline"}
                 className="w-32 h-12 text-lg"
-                onClick={() => {
-                  setFormData({ ...formData, isUrgent: true })
-                  handleNext()
-                }}
+                onClick={() => setFormData({ ...formData, isUrgent: true })}
               >
                 Yes
               </Button>
               <Button
                 variant={!formData.isUrgent ? "default" : "outline"}
                 className="w-32 h-12 text-lg"
-                onClick={() => {
-                  setFormData({ ...formData, isUrgent: false })
-                  handleNext()
-                }}
+                onClick={() => setFormData({ ...formData, isUrgent: false })}
               >
                 No
               </Button>
             </div>
           </div>
-          <div className="flex justify-start">
+          <div className="flex justify-between">
             <Button
               variant="outline"
               className="h-12 text-base font-medium"
               onClick={handleBack}
             >
               Back
+            </Button>
+            <Button className="h-12 text-base font-medium" onClick={handleNext}>
+              Next
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
@@ -184,32 +189,30 @@ export default function CommonTaskForm({
               <Button
                 variant={formData.isImportant ? "default" : "outline"}
                 className="w-32 h-12 text-lg"
-                onClick={() => {
-                  setFormData({ ...formData, isImportant: true })
-                  handleNext()
-                }}
+                onClick={() => setFormData({ ...formData, isImportant: true })}
               >
                 Yes
               </Button>
               <Button
                 variant={!formData.isImportant ? "default" : "outline"}
                 className="w-32 h-12 text-lg"
-                onClick={() => {
-                  setFormData({ ...formData, isImportant: false })
-                  handleNext()
-                }}
+                onClick={() => setFormData({ ...formData, isImportant: false })}
               >
                 No
               </Button>
             </div>
           </div>
-          <div className="flex justify-start">
+          <div className="flex justify-between">
             <Button
               variant="outline"
               className="h-12 text-base font-medium"
               onClick={handleBack}
             >
               Back
+            </Button>
+            <Button className="h-12 text-base font-medium" onClick={handleNext}>
+              Next
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </div>
         </div>
@@ -226,28 +229,24 @@ export default function CommonTaskForm({
               <Button
                 variant={formData.timeUnder5Min ? "default" : "outline"}
                 className="w-32 h-12 text-lg"
-                onClick={() => {
+                onClick={() =>
                   setFormData({ ...formData, timeUnder5Min: true })
-                  handleSubmit()
-                }}
-                disabled={isSubmitting}
+                }
               >
                 Yes
               </Button>
               <Button
                 variant={!formData.timeUnder5Min ? "default" : "outline"}
                 className="w-32 h-12 text-lg"
-                onClick={() => {
+                onClick={() =>
                   setFormData({ ...formData, timeUnder5Min: false })
-                  handleSubmit()
-                }}
-                disabled={isSubmitting}
+                }
               >
                 No
               </Button>
             </div>
           </div>
-          <div className="flex justify-start">
+          <div className="flex justify-between">
             <Button
               variant="outline"
               className="h-12 text-base font-medium"
@@ -255,12 +254,17 @@ export default function CommonTaskForm({
             >
               Back
             </Button>
-            {isSubmitting && (
-              <div className="flex items-center justify-center ml-4">
-                <Loader2 className="h-5 w-5 animate-spin" />
-                <span className="ml-2">Submitting...</span>
-              </div>
-            )}
+            <Button
+              className="h-12 text-base font-medium"
+              onClick={handleSubmit}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              ) : (
+                "Submit Task"
+              )}
+            </Button>
           </div>
         </div>
       )}
